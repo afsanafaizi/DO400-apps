@@ -47,26 +47,26 @@ pipeline {
       dir ('exchange-cli') {
 
         sh "npm run test:unit"
-       }
-     }
-   }
+        }
+      }
+    }
 
-   stage ('Functional Tests') {
+    stage ('Functional Tests') {
 
-     steps {
+      steps {
 
-       dir ('exchange-cli') {
-
-         sh "npm run test:functional"
+        dir ('exchange-cli') {
+  
+          sh "npm run test:functional"
 
          }
 
        }
 
-    }
+     }
+
+   }
 
   }
-
  }
-
 }
