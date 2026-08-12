@@ -11,6 +11,39 @@ pipeline {
                 sh "node test.js"
             }
         }
+    post {
+
+        failure {
+
+            withCredentials([afsanafaizi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(
+
+                credentialsId: 'github-global',
+
+                usernameVariable: 'afsanafaizi',
+
+                passwordVariable: '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'
+
+            )]) {
+
+                sh """
+
+                    curl -X POST \
+
+                    -H 'Authorization: token $PASSWORD' \
+
+                    'https://api.github.com/repos/$USERNAME/do400-greeting-devsecops/issues' \
+
+                    -d '{"title": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
+
+                """
+
+            }
+
+        }
+
+    }
+
+}
 
     stage('Deploy'){
        
@@ -25,5 +58,20 @@ pipeline {
             }
 
         } 
+    stage('Push to Quay') {
+
+    steps {
+
+        sh '''
+
+            oc start-build greeting-devsecops-quay \
+
+            --follow --wait -n ${APP_NAMESPACE}
+
+        '''
+
+        }
+
+      }
     }
 }
