@@ -31,8 +31,7 @@ pipeline {
 
                     -H 'Authorization: token $PASSWORD' \
 
-                    'https://api.github.com/repos/afsanafaizi/afsanafaizi-do400-greeting-devsecops/issues' \
-
+                    'https://github.com/afsanafaizi/afsanafaizi-do400-greeting-devsecops.git \
                     -d '{"title": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
 
                 """
