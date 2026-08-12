@@ -19,9 +19,9 @@ pipeline {
 
                 credentialsId: 'github-global',
 
-                usernameVariable: 'afsanafaizi',
+                usernameVariable: 'USERNAME',
 
-                passwordVariable: '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'
+                passwordVariable: 'PASSWORD'
 
             )]) {
 
